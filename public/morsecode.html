@@ -1,0 +1,47 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    function submitText() {
+        $.ajax({
+            url: '/convertText',
+            type: 'POST',
+            cache: false,
+            data: { text: $('#text').val() },
+            success: function (data) {
+                $('#output').html(data)
+            }
+        })
+    }
+
+    function submitMorse() {
+        $.ajax({
+            url: '/convertMorse',
+            type: 'POST',
+            cache: false,
+            data: { text: $('#morseCode').val() },
+            success: function (data) {
+                $('#output').html(data)
+            }
+        })
+    }
+
+</script>
+
+<div style=" width: 50%;
+margin: 0 auto;">
+    <h3> Convert text to morse code: </h3>
+    <input type="text" id="text" style="width: 100%"></input> <br>
+    <button id="convertButton" onclick="submitText()">
+        convert to morse code </button>
+
+    <br> <br>
+
+    <h3> Convert morse code to text: </h3>
+    <input type="text" id="morseCode" style="width: 100%"></input> <br>
+    <button onclick="submitMorse()"> convert to text </button>
+
+    <br> <br>
+
+    <p> Result: </p>
+    <div id="output"></div>
+</div>
